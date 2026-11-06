@@ -1,33 +1,63 @@
 import { Hono } from 'hono'
 import type { AppEnv } from '../types'
-import type { ContactLink, Project, SiteContent, Skill } from '../../shared/types'
+import type {
+  ContactLink, Project, ProjectStatus, SiteContent, Skill,
+} from '../../shared/types'
 
 interface ProjectRow {
   id: number
   slug: string
   title: string
+  summary: string
   description: string
   tech: string
+  features: string
+  role: string
+  year: number | null
+  status: string
   url: string | null
+  repo_url: string | null
   image_key: string | null
+  featured: number
   sort_order: number
 }
 
-function toProject(r: ProjectRow): Project {
-  let tech: string[] = []
+interface ImageRow {
+  id: number
+  project_id: number
+  image_key: string
+  alt: string
+  sort_order: number
+}
+
+const STATUSES: string[] = ['completed', 'in-progress', 'archived']
+
+function parseArray(s: string): string[] {
   try {
-    tech = JSON.parse(r.tech)
+    const v: unknown = JSON.parse(s)
+    return Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []
   } catch {
-    tech = []
+    return []
   }
+}
+
+function toProject(r: ProjectRow, imgs: ImageRow[] = []): Project {
   return {
     id: r.id,
     slug: r.slug,
     title: r.title,
+    summary: r.summary,
     description: r.description,
-    tech,
+    tech: parseArray(r.tech),
+    features: parseArray(r.features),
+    role: r.role,
+    year: r.year,
+    status: (STATUSES.includes(r.status) ? r.status : 'completed') as ProjectStatus,
     url: r.url,
+    repoUrl: r.repo_url,
     imageUrl: r.image_key ? `/media/${r.image_key}` : null,
+    images: imgs.map((i) => ({ id: i.id, url: `/media/${i.image_key}`, alt: i.alt })),
+    featured: r.featured === 1,
     sortOrder: r.sort_order,
   }
 }
@@ -43,10 +73,23 @@ publicRoutes.get('/content', async (c) => {
 })
 
 publicRoutes.get('/projects', async (c) => {
-  const { results } = await c.env.DB
-    .prepare('SELECT * FROM projects WHERE published = 1 ORDER BY sort_order, id')
-    .all<ProjectRow>()
-  return c.json(results.map(toProject))
+  const [projects, images] = await Promise.all([
+    c.env.DB
+      .prepare('SELECT * FROM projects WHERE published = 1 ORDER BY sort_order, id')
+      .all<ProjectRow>(),
+    c.env.DB
+      .prepare('SELECT * FROM project_images ORDER BY sort_order, id')
+      .all<ImageRow>(),
+  ])
+
+  const byProject = new Map<number, ImageRow[]>()
+  for (const img of images.results) {
+    const list = byProject.get(img.project_id) ?? []
+    list.push(img)
+    byProject.set(img.project_id, list)
+  }
+
+  return c.json(projects.results.map((p) => toProject(p, byProject.get(p.id))))
 })
 
 publicRoutes.get('/projects/:slug', async (c) => {
@@ -55,7 +98,12 @@ publicRoutes.get('/projects/:slug', async (c) => {
     .bind(c.req.param('slug'))
     .first<ProjectRow>()
   if (!row) return c.json({ error: 'Not found' }, 404)
-  return c.json(toProject(row))
+
+  const { results } = await c.env.DB
+    .prepare('SELECT * FROM project_images WHERE project_id = ? ORDER BY sort_order, id')
+    .bind(row.id)
+    .all<ImageRow>()
+  return c.json(toProject(row, results))
 })
 
 publicRoutes.get('/skills', async (c) => {

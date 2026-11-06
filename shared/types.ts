@@ -5,14 +5,30 @@ export interface HealthResponse {
 
 export type SiteContent = Record<string, string>
 
+export type ProjectStatus = 'completed' | 'in-progress' | 'archived'
+
+export interface ProjectImage {
+  id: number
+  url: string
+  alt: string
+}
+
 export interface Project {
   id: number
   slug: string
   title: string
+  summary: string
   description: string
   tech: string[]
+  features: string[]
+  role: string
+  year: number | null
+  status: ProjectStatus
   url: string | null
+  repoUrl: string | null
   imageUrl: string | null
+  images: ProjectImage[]
+  featured: boolean
   sortOrder: number
 }
 
