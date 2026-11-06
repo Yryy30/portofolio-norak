@@ -9,7 +9,11 @@
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "$lib/*": ["./src/lib/*"],
+      "@shared/*": ["./shared/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.svelte", "shared/**/*.ts", "vite.config.ts"]
 }
