@@ -47,3 +47,38 @@ export interface ContactLink {
   icon: string
   sortOrder: number
 }
+
+export type ContentFieldType = 'text' | 'textarea' | 'url' | 'number'
+
+export interface ContentItem {
+  key: string
+  value: string
+  type: ContentFieldType
+  group: string
+  label: string
+  sortOrder: number
+}
+
+export interface AdminProject extends Project {
+  published: boolean
+}
+
+export interface ProjectInput {
+  slug: string
+  title: string
+  summary: string
+  description: string
+  tech: string[]
+  features: string[]
+  role: string
+  year: number | null
+  status: ProjectStatus
+  url: string | null
+  repoUrl: string | null
+  featured: boolean
+  published: boolean
+  sortOrder: number
+}
+
+export type SkillInput = Pick<Skill, 'name' | 'level'>
+export type ContactLinkInput = Pick<ContactLink, 'label' | 'value' | 'url' | 'icon'>

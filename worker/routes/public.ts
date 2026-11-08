@@ -4,7 +4,7 @@ import type {
   ContactLink, Project, ProjectStatus, SiteContent, Skill,
 } from '../../shared/types'
 
-interface ProjectRow {
+export interface ProjectRow {
   id: number
   slug: string
   title: string
@@ -20,9 +20,10 @@ interface ProjectRow {
   image_key: string | null
   featured: number
   sort_order: number
+  published: number
 }
 
-interface ImageRow {
+export interface ImageRow {
   id: number
   project_id: number
   image_key: string
@@ -41,7 +42,7 @@ function parseArray(s: string): string[] {
   }
 }
 
-function toProject(r: ProjectRow, imgs: ImageRow[] = []): Project {
+export function toProject(r: ProjectRow, imgs: ImageRow[] = []): Project {
   return {
     id: r.id,
     slug: r.slug,

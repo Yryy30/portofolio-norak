@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import type { HealthResponse } from '../shared/types'
 import type { AppEnv } from './types'
+import { adminRoutes } from './routes/admin'
 import { publicRoutes } from './routes/public'
 import { mediaRoutes } from './routes/media'
 
@@ -11,6 +12,7 @@ app.get('/api/health', (c) => {
   return c.json(body)
 })
 
+app.route('/api/admin', adminRoutes)
 app.route('/api', publicRoutes)
 app.route('/media', mediaRoutes)
 
