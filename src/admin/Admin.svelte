@@ -5,12 +5,14 @@
   import ContentEditor from './ContentEditor.svelte'
   import SkillsEditor from './SkillsEditor.svelte'
   import ContactEditor from './ContactEditor.svelte'
+  import ProjectsEditor from './ProjectsEditor.svelte'
 
-  type Tab = 'content' | 'skills' | 'contact'
+  type Tab = 'content' | 'projects' | 'skills' | 'contact'
   const tabs: { id: Tab; label: string }[] = [
-    { id: 'content', label: 'Konten' },
+    { id: 'content', label: 'Content' },
+    { id: 'projects', label: 'Projects' },
     { id: 'skills', label: 'Skills' },
-    { id: 'contact', label: 'Kontak' },
+    { id: 'contact', label: 'Contact' },
   ]
 
   let auth = $state<'checking' | 'out' | 'in'>('checking')
@@ -51,6 +53,7 @@
     <main>
       <div class="panel">
         {#if tab === 'content'}<ContentEditor />{/if}
+        {#if tab === 'projects'}<ProjectsEditor />{/if}
         {#if tab === 'skills'}<SkillsEditor />{/if}
         {#if tab === 'contact'}<ContactEditor />{/if}
       </div>

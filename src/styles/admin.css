@@ -60,3 +60,35 @@
 .admin .login input { width: 100%; }
 .admin .login .btn { justify-content: center; width: 100%; padding: 11px 16px; }
 .admin .login .msg { text-align: center; margin: 0; }
+
+.admin select {
+  font: inherit; color: var(--text); padding: 8px 10px;
+  border: 1px solid var(--border); border-radius: 8px; background: #fff;
+}
+.admin .grid2 { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 640px) { .admin .grid2 { grid-template-columns: 1fr; } }
+.admin .checks { display: flex; gap: 20px; flex-wrap: wrap; }
+.admin .check { flex-direction: row; align-items: center; gap: 8px; color: var(--text); }
+.admin .check input { width: auto; }
+
+.admin .plist { display: grid; gap: 8px; }
+.admin .prow {
+  all: unset; box-sizing: border-box; cursor: pointer; width: 100%;
+  display: flex; align-items: center; gap: 12px; padding: 8px 10px;
+  border: 1px solid var(--border); background: #fff;
+}
+.admin .prow:hover { background: var(--accent-soft); }
+.admin .prow img, .admin .prow .ph {
+  width: 64px; height: 40px; object-fit: cover; flex: none;
+  display: grid; place-items: center; background: #3a6ea5; color: #fff; font-weight: 700;
+}
+.admin .prow .meta { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.admin .prow small { color: var(--muted); }
+.admin .tag { font-size: 0.75rem; padding: 1px 8px; background: #fef3c7; color: #92400e; }
+.admin .tag.draft { background: #e5e7eb; color: #4b5563; }
+
+.admin .thumb { width: 96px; height: 56px; object-fit: cover; border: 1px solid var(--border); }
+.admin .thumbs { display: flex; flex-wrap: wrap; gap: 10px; }
+.admin .gitem { position: relative; }
+.admin .gitem img { width: 120px; height: 72px; object-fit: cover; border: 1px solid var(--border); display: block; }
+.admin .gitem .mini { position: absolute; top: 2px; right: 2px; }

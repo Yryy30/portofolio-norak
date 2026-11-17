@@ -31,6 +31,7 @@
     padding: 5px;
     overflow: hidden;
     white-space: nowrap;
+    margin-bottom: 10px;
   }
   .marquee.vertical { white-space: normal; position: relative; }
 
