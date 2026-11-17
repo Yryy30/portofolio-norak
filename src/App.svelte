@@ -66,7 +66,7 @@
       <Marquee text={content.t('welcome_marquee', '👾 Welcome! 👾')} speed={12} />
       <Navbar onNavigate={navigate} />
 
-      <div class="content modern">
+      <div class="content win98">
         {#key route}
           <div class="page">
             {#if route === 'home'}<Home onNavigate={navigate} onOpenProject={openProject} />{/if}
@@ -97,9 +97,10 @@
   }
   .balloon { position: absolute; font-size: 24px; animation: runBorder 8s linear infinite; }
   .content {
-    background: var(--bg); border: 1px solid #b8c4d6; border-radius: 8px;
+    background: var(--bg);
+    border: 2px solid; border-color: #808080 #fff #fff #808080;
+    box-shadow: inset 1px 1px #404040;
     padding: 24px; min-height: 340px; margin-top: 10px;
-    box-shadow: inset 0 0 0 3px #fff;
   }
 
   @keyframes runBorder {

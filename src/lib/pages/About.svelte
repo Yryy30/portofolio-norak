@@ -4,7 +4,7 @@
     ['Backend', 'Hono + Cloudflare Workers'],
     ['Database', 'Cloudflare D1 (SQLite)'],
     ['Storage', 'Cloudflare R2'],
-    ['Theme', 'BIOS, Windows XP, 2000s web style'],
+    ['Theme', 'BIOS, Windows 98/XP, 2000s web style'],
   ]
 </script>
 

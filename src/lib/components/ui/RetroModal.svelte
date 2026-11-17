@@ -58,43 +58,57 @@
       <div class="titlebar" role="presentation" onmousedown={startDrag}>
         <span class="ttl">{title}</span>
         <div class="ctrl">
-          <span aria-hidden="true">–</span>
-          <span aria-hidden="true">▢</span>
-          <button class="close" onclick={onClose} aria-label="Close">✕</button>
+          <span class="cbtn" aria-hidden="true">_</span>
+          <span class="cbtn" aria-hidden="true">□</span>
+          <button class="cbtn close" onclick={onClose} aria-label="Close">✕</button>
         </div>
       </div>
-      <div class="body modern">{@render children()}</div>
+      <div class="body win98">{@render children()}</div>
     </div>
   </div>
 {/if}
 
 <style>
-  .overlay { position: fixed; inset: 0; z-index: 9998; background: rgba(0, 20, 60, 0.35); }
+  .overlay { position: fixed; inset: 0; z-index: 9998; background: rgba(0, 0, 0, 0.25); }
+
   .window {
     position: absolute;
     max-width: calc(100vw - 16px);
     max-height: 88vh;
     display: flex; flex-direction: column;
-    border: 3px solid #0831d9;
-    border-radius: 9px 9px 4px 4px;
-    background: #ece9d8;
-    box-shadow: 4px 6px 18px rgba(0, 0, 0, 0.45);
+    padding: 3px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #dfdfdf #404040 #404040 #dfdfdf;
+    box-shadow: inset 1px 1px #fff, inset -1px -1px #808080, 4px 4px 0 rgba(0, 0, 0, 0.35);
+    border-radius: 0;
     overflow: hidden;
+    font-family: Tahoma, 'MS Sans Serif', sans-serif;
   }
+
   .titlebar {
     flex: none; display: flex; align-items: center; justify-content: space-between; gap: 8px;
-    padding: 5px 6px 5px 10px; color: #fff; cursor: move; user-select: none;
-    font: bold 13px Tahoma, sans-serif; text-shadow: 1px 1px #0f1089;
-    background: linear-gradient(180deg, #0997ff 0%, #0053ee 8%, #0050ee 40%, #0066ff 88%, #005bff 93%, #003dd7 100%);
+    padding: 3px 3px 3px 6px; color: #fff; cursor: move; user-select: none;
+    font: bold 13px Tahoma, sans-serif;
+    background: linear-gradient(90deg, #000080, #1084d0);
   }
   .ttl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .ctrl { display: flex; gap: 3px; }
-  .ctrl span, .ctrl button {
-    width: 22px; height: 22px; display: grid; place-items: center; padding: 0;
-    border: 1px solid #fff; border-radius: 3px; color: #fff; font-size: 12px; line-height: 1;
-    background: linear-gradient(#5b8df5, #2a5fe0);
+
+  .ctrl { display: flex; gap: 2px; }
+  .ctrl .cbtn {
+    all: unset; box-sizing: border-box;
+    width: 18px; height: 16px; display: grid; place-items: center;
+    background: #c0c0c0; color: #000; font: bold 11px/1 Tahoma, sans-serif;
+    border: 2px solid; border-color: #fff #404040 #404040 #fff;
+    box-shadow: inset -1px -1px #808080;
   }
-  .ctrl .close { background: linear-gradient(#e99a80, #d4452a); cursor: pointer; }
-  .ctrl .close:hover { filter: brightness(1.1); }
-  .body { overflow: auto; background: #fff; }
+  .ctrl .close { margin-left: 2px; cursor: pointer; }
+  .ctrl .close:active { border-color: #404040 #fff #fff #404040; box-shadow: inset 1px 1px #808080; }
+
+  .body {
+    flex: 1; min-height: 0; overflow: auto; margin-top: 3px;
+    background: #fff;
+    border: 2px solid; border-color: #808080 #fff #fff #808080;
+    box-shadow: inset 1px 1px #404040;
+  }
 </style>

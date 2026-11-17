@@ -44,14 +44,23 @@
 </div>
 
 <style>
-  .item { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-  .icon {
-    width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center;
-    font-size: 1.4rem; background: var(--accent-soft);
+  .grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+
+  .item {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
   }
-  .info { display: flex; flex-direction: column; min-width: 0; }
+  .icon {
+    flex: none; width: 44px; height: 44px; display: grid; place-items: center;
+    font-size: 1.4rem; background: var(--accent-soft);
+    border: 2px solid; border-color: #808080 #fff #fff #808080;
+  }
+  .info { flex: 1; display: flex; flex-direction: column; min-width: 0; }
   .label { color: var(--muted); font-size: 0.8rem; }
   .value { font-weight: 600; overflow-wrap: anywhere; }
-  .acts { display: flex; gap: 8px;}
-  .acts .btn { padding: 6px 14px; font-size: 0.85rem; }
+  .acts { flex: none; display: flex; gap: 8px; }
+  .acts .btn { padding: 6px 14px; font-size: 0.85rem; min-width: 0; }
 </style>

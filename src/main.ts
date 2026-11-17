@@ -1,6 +1,9 @@
 import './styles/theme.css'
-import './styles/modern.css'
+import './styles/win98.css'
 import { mount } from 'svelte'
 import App from './App.svelte'
+import Admin from './admin/Admin.svelte'
 
-mount(App, { target: document.getElementById('app')! })
+const isAdmin = location.pathname.replace(/\/+$/, '') === '/admin'
+
+mount(isAdmin ? Admin : App, { target: document.getElementById('app')! })
