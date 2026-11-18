@@ -69,7 +69,7 @@ export function parseProject(b: unknown): ProjectInput | string {
   const repoUrl = link(b.repoUrl)
   if (url === undefined || repoUrl === undefined) return 'Link must start with http:// or https://'
 
-  const sortOrder = intOrNull(b.sortOrder) ?? 0
+  const sortOrder = intOrNull(b.sortOrder)
   if (sortOrder === undefined) return 'Invalid sort order'
 
   return {
@@ -86,6 +86,6 @@ export function parseProject(b: unknown): ProjectInput | string {
     repoUrl,
     featured: b.featured === true,
     published: b.published !== false,
-    sortOrder,
+    sortOrder: sortOrder ?? 0,
   }
 }

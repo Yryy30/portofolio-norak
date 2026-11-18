@@ -20,7 +20,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.worker.json",
     "deploy": "pnpm build && wrangler deploy"
   },
-  "private": "true",
+  "private": true,
   "dependencies": {
     "hono": "^4.13.16"
   },
@@ -34,11 +34,5 @@
     "typescript": "^6.0.3",
     "vite": "^8.3.6",
     "wrangler": "^4.157.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "workerd"
-    ]
   }
 }

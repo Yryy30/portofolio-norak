@@ -30,6 +30,6 @@
       <input type="password" bind:value={password} autocomplete="current-password" required />
     </label>
     {#if error}<p class="msg err">{error}</p>{/if}
-    <button class="btn" disabled={busy}>{busy ? 'Masuk…' : 'Masuk'}</button>
+    <button class="btn" disabled={busy}>{busy ? 'Login…' : 'Login'}</button>
   </form>
 </div>

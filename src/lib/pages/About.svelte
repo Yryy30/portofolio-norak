@@ -10,7 +10,7 @@
 
 <h1 class="page-title">About</h1>
 <p class="page-sub">
-  This portfolio is build for fun and nostalgic feeling.
+  This portfolio is built for fun and nostalgic feeling.
   It is not a serious project, but a playground for me to learn and experiment with new technologies.
 </p>
 

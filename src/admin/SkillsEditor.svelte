@@ -32,7 +32,7 @@
       await admin.saveSkills(
         rows.map((r) => ({
           name: r.name.trim(),
-          level: r.level === null || (r.level as unknown) === '' ? null : Number(r.level),
+          level: r.level == null || (r.level as unknown) === '' ? null : Number(r.level),
         })),
       )
       say('Saved')

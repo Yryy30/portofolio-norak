@@ -36,7 +36,7 @@
   {:else if auth === 'out'}
     <Login onSuccess={() => (auth = 'in')} />
   {:else}
-    <div class="bar">
+    <div class="topbar">
       <h1>Admin Panel</h1>
       <div class="inline">
         <a href="/">View Site ↗</a>

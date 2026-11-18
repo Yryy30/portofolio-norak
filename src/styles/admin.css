@@ -1,9 +1,9 @@
 .admin { min-height: 100vh; background: var(--bg); font-family: 'Segoe UI', Inter, system-ui, sans-serif; }
-.admin .bar {
+.admin .topbar {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   padding: 10px 20px; background: #fff; border-bottom: 1px solid var(--border);
 }
-.admin .bar h1 { font-size: 1.05rem; }
+.admin .topbar h1 { font-size: 1.05rem; }
 .admin .tabs { display: flex; gap: 6px; padding: 14px 20px 0; flex-wrap: wrap; }
 .admin .tabs button {
   all: unset; cursor: pointer; padding: 7px 16px; border-radius: 8px 8px 0 0;
